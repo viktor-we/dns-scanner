@@ -27,7 +27,7 @@ files_evaluation_data_prefix = "evaluation-data-{}"
 files_addresses_github = "collected_addresses"
 files_addresses_hashed = "hashed_addresses"
 
-url_tranco_list = "resources/top-1m.csv"
+url_tranco_list = "resources/top-1k.csv"
 url_repos = "resources/repos"
 
 def main():
@@ -74,29 +74,29 @@ def main():
     # Scans of GitHub repos
     print(f"Phase 4: Scans of GitHub Repos for signed commits")
 
-    scan_git.main(url_repos, url_data_dir + files_addresses_github, url_scan_dir + "eval_github")
+    # scan_git.main(url_repos, url_data_dir + files_addresses_github, url_scan_dir + "eval_github")
 
     print(f"Finished scans of GitHub Repos for signed commits")
 
     # Evaluation of collected addresses
     print(f"Phase 5: Hashing and scanning OPENPGPKEY entries")
 
-    hash_addresses.main(url_data_dir + files_addresses_github, url_data_dir + files_addresses_hashed)
-    scan_zdns.main("OPENPGPKEY", url_data_dir + files_addresses_hashed, url_data_dir + files_answers_prefix.format("OPENPGPKEY"), "False")
+    # hash_addresses.main(url_data_dir + files_addresses_github, url_data_dir + files_addresses_hashed)
+    # scan_zdns.main("OPENPGPKEY", url_data_dir + files_addresses_hashed, url_data_dir + files_answers_prefix.format("OPENPGPKEY"), "False")
 
     print(f"Finished hashing and scanning OPENPGPKEY entries")
 
     # Extraction of scans
     print(f"Phase 6: Extraction of data in OPENPGPKEY entries")
     
-    extract_zdns.main("OPENPGPKEY", url_data_dir + files_answers_prefix.format("OPENPGPKEY"), url_data_dir + files_extractions_prefix.format("OPENPGPKEY"), url_scan_dir + files_evaluation_all_prefix.format("OPENPGPKEY"))
+    # extract_zdns.main("OPENPGPKEY", url_data_dir + files_answers_prefix.format("OPENPGPKEY"), url_data_dir + files_extractions_prefix.format("OPENPGPKEY"), url_scan_dir + files_evaluation_all_prefix.format("OPENPGPKEY"))
 
     print(f"Finished extraction of data in OPENPGPKEY entries")
 
     # Evaluation of data, filtering out CNAME
     print(f"Phase 7: Evaluation of data in OPENPGPKEY entries")
 
-    eval_zdns.main("OPENPGPKEY", url_data_dir + files_extractions_prefix.format("OPENPGPKEY"), url_data_dir + files_data_prefix.format("OPENPGPKEY"), url_scan_dir + files_evaluation_data_prefix.format("OPENPGPKEY"))
+    # eval_zdns.main("OPENPGPKEY", url_data_dir + files_extractions_prefix.format("OPENPGPKEY"), url_data_dir + files_data_prefix.format("OPENPGPKEY"), url_scan_dir + files_evaluation_data_prefix.format("OPENPGPKEY"))
 
     print(f"Finished Evaluation of data in OPENPGPKEY entries")
 
